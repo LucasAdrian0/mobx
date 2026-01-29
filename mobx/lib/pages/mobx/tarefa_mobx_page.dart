@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
+import 'package:pacotes/models/lista_tarefa_store.dart';
 import 'package:pacotes/models/tarefa_model.dart';
 import 'package:pacotes/repository/tarefa_repository.dart';
-import 'package:provider/provider.dart';
 
-class TarefaPage extends StatelessWidget {
+class TarefaMobXPage extends StatelessWidget {
   var descricaoController = TextEditingController();
+  var listaTarefaStore = ListaTarefaStore();
+
+  TarefaMobXPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +33,7 @@ class TarefaPage extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () async {
-                      Provider.of<TarefaRepository>(
-                        context,
-                        listen: false,
-                      ).adicionar(Tarefa(descricaoController.text, false));
+                      listaTarefaStore.adicionar(descricaoController.text);
                       Navigator.pop(context);
                     },
                     child: Text("Salvar"),
@@ -46,6 +48,7 @@ class TarefaPage extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Column(
           children: [
+            const Text("Tarefa MobX Store", style: TextStyle(fontSize: 26)),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               child: Row(
@@ -55,16 +58,12 @@ class TarefaPage extends StatelessWidget {
                     "Apenas não concluidos",
                     style: TextStyle(fontSize: 18),
                   ),
-                  Consumer<TarefaRepository>(
-                    builder: (_, tarefaRepository, widget) {
-                      return Switch(
-                        value: tarefaRepository.apenasNaoConcluidos,
+                  Observer(
+                        builder: (_) {
+                          return Switch(
+                        value: listaTarefaStore.apenasNaoConcluidos.value,
                         onChanged: (bool value) {
-                          tarefaRepository.apenasNaoConcluidos = value;
-                          Provider.of<TarefaRepository>(
-                            context,
-                            listen: false,
-                          ).apenasNaoConcluidos = value;
+                          listaTarefaStore.apenasNaoConcluidos.value = value;
                         },
                       );
                     },
@@ -73,33 +72,35 @@ class TarefaPage extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Consumer<TarefaRepository>(
-                builder: (_, tarefaRepository, widget) {
+              child: Observer(
+                builder: (_) {
                   return ListView.builder(
-                    itemCount: tarefaRepository.tarefas.length,
+                    itemCount: listaTarefaStore.tarefas.length,
                     itemBuilder: (BuildContext bc, int index) {
-                      var tarefa = tarefaRepository.tarefas[index];
-                      return Dismissible(
-                        onDismissed: (DismissDirection dismissDerection) async {
-                          Provider.of<TarefaRepository>(
-                            context,
-                            listen: false,
-                          ).remover(tarefa.id);
-                        },
-                        key: Key(tarefa.descricao),
-                        child: ListTile(
-                          title: Text(tarefa.descricao),
-                          trailing: Switch(
-                            onChanged: (bool value) async {
-                              tarefa.concluido = value;
-                              Provider.of<TarefaRepository>(
-                                context,
-                                listen: false,
-                              ).alterar(tarefa.id, tarefa.concluido);
+                      var tarefa = listaTarefaStore.tarefas[index];
+                      return Observer(
+                        builder: (_) {
+                          return Dismissible(
+                            onDismissed: (DismissDirection dismissDerection) async {
+                              listaTarefaStore.excluir(tarefa.id);
                             },
-                            value: tarefa.concluido,
-                          ),
-                        ),
+                            key: Key(tarefa.descricao),
+                            child: ListTile(
+                              title: Text(tarefa.descricao),
+                              trailing: Switch(
+                                onChanged: (bool value) async {
+                                  tarefa.concluido = value;
+                                  listaTarefaStore.alterar(
+                                    tarefa.id,
+                                    tarefa.descricao,
+                                    tarefa.concluido,
+                                  );
+                                },
+                                value: tarefa.concluido,
+                              ),
+                            ),
+                          );
+                        }
                       );
                     },
                   );

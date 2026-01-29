@@ -3,8 +3,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pacotes/pages/brasil_fields_page/brasil_fields_page.dart';
-import 'package:pacotes/pages/contador/contador_page.dart';
-import 'package:pacotes/pages/tarefa/tarefa_page.dart';
+import 'package:pacotes/pages/mobx/contador_mobx_page.dart';
+import 'package:pacotes/pages/mobx/contador_mobx_store_page.dart';
+import 'package:pacotes/pages/mobx/tarefa_mobx_page.dart';
+import 'package:pacotes/pages/provider/contador_provider_page.dart';
+import 'package:pacotes/pages/provider/tarefa_provider_page.dart';
 import 'package:pacotes/service/dark_mode_service.dart';
 import 'package:pacotes/shared/widget/custon_drawer.dart';
 import 'package:provider/provider.dart';
@@ -52,23 +55,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       body: TabBarView(
         controller: tabController,
         children: [
-          TarefaPage(),
-          ContadorPage(),
-          Container(color: Colors.white),
-          Container(color: Colors.yellow),
-          Container(color: Colors.red),
-          Container(color: Colors.green),
-          BrasilFieldsPage(),
+          ContadorProviderPage(),
+          TarefaProviderPage(),
+          ContadorMobXPage(),
+          ContadorMobXStorePage(),
+          TarefaMobXPage()
         ],
       ),
       bottomNavigationBar: ConvexAppBar.badge(
         {3: '99+', 1: Icons.assistant_photo, 2: Colors.redAccent},
         items: [
-          TabItem(icon: Icons.home, title: 'Home'),
-          TabItem(icon: Icons.map, title: 'Discovery'),
-          TabItem(icon: Icons.add, title: 'Add'),
-          TabItem(icon: Icons.message, title: 'Message'),
-          TabItem(icon: Icons.people, title: 'Brasil'),
+          TabItem(icon: Icons.home, title: 'Provider 1'),
+          TabItem(icon: Icons.map, title: 'Provider 2'),
+          TabItem(icon: Icons.add, title: 'MobX'),
+          TabItem(icon: Icons.message, title: 'MobXStore'),
+          TabItem(icon: Icons.people, title: 'Tarefa MobX'),
         ],
         onTap: (int i) => tabController.index = i,
         controller: tabController,

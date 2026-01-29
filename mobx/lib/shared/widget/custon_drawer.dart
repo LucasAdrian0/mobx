@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:pacotes/pages/auto_size_text.dart';
 import 'package:pacotes/pages/battery_page/battery_page.dart';
+import 'package:pacotes/pages/brasil_fields_page/brasil_fields_page.dart';
 import 'package:pacotes/pages/camera/camera_page.dart';
 import 'package:pacotes/pages/connectivity_plus/connectivy_plus_page.dart';
 import 'package:pacotes/pages/geolocator/geolocator_page.dart';
@@ -309,7 +310,9 @@ class CustonDrawer extends StatelessWidget {
               DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
               if (Platform.isAndroid) {
                 AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-                debugPrint('Running on ${androidInfo.model}'); // e.g. "Moto G (4)"
+                debugPrint(
+                  'Running on ${androidInfo.model}',
+                ); // e.g. "Moto G (4)"
               } else if (Platform.isIOS) {
                 IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
                 debugPrint(
@@ -383,7 +386,7 @@ class CustonDrawer extends StatelessWidget {
             onTap: () async {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => CameraPage ()),
+                MaterialPageRoute(builder: (_) => CameraPage()),
               );
             },
           ),
@@ -406,6 +409,32 @@ class CustonDrawer extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => QrCodePage()),
+              );
+            },
+          ),
+          const Divider(),
+          const SizedBox(height: 10),
+          //Mascara Brasil
+          InkWell(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              width: double.infinity,
+              child: Row(
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.brazilianRealSign,
+                    color: Colors.blue,
+                    size: 24,
+                  ),
+                  SizedBox(width: 5),
+                  Text("Brasil mask"),
+                ],
+              ),
+            ),
+            onTap: () async {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => BrasilFieldsPage()),
               );
             },
           ),

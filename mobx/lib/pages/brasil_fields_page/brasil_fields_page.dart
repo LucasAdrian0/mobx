@@ -17,6 +17,7 @@ class _BrasilFieldsPageState extends State<BrasilFieldsPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(title: Text("Brasil Mask")),
         body: Container(
           margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Column(
@@ -58,8 +59,12 @@ class _BrasilFieldsPageState extends State<BrasilFieldsPage> {
               Center(
                 child: TextButton(
                   onPressed: () {
-                    debugPrint(CPFValidator.isValid(controllerCPF.text).toString());
-                    debugPrint(CPFValidator.isValid(CPFValidator.generate()).toString());
+                    debugPrint(
+                      CPFValidator.isValid(controllerCPF.text).toString(),
+                    );
+                    debugPrint(
+                      CPFValidator.isValid(CPFValidator.generate()).toString(),
+                    );
                   },
                   child: Text("Continuar"),
                 ),

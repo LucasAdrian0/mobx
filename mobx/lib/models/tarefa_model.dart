@@ -1,14 +1,12 @@
+import 'package:flutter/material.dart';
+
 class Tarefa {
-  int _id = 0;
+  final String _id = UniqueKey().toString();
   String _descricao = "";
   bool _concluido = false;
 
   Tarefa(this._descricao, this._concluido);
-  int get id => _id;
-
-  set id(int id) {
-    _id = id;
-  }
+  String get id => _id;
 
   String get descricao => _descricao;
 
