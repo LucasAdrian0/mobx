@@ -2,7 +2,8 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pacotes/pages/brasil_fields_page/brasil_fields_page.dart';
+import 'package:pacotes/pages/getx/contador_getx_page.dart';
+import 'package:pacotes/pages/getx/tarefa_getx_page.dart';
 import 'package:pacotes/pages/mobx/contador_mobx_page.dart';
 import 'package:pacotes/pages/mobx/contador_mobx_store_page.dart';
 import 'package:pacotes/pages/mobx/tarefa_mobx_page.dart';
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     // TODO: implement initState
     super.initState();
-    tabController = TabController(initialIndex: 0, length: 5, vsync: this);
+    tabController = TabController(initialIndex: 0, length: 7, vsync: this);
   }
 
   @override
@@ -59,17 +60,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           TarefaProviderPage(),
           ContadorMobXPage(),
           ContadorMobXStorePage(),
-          TarefaMobXPage()
+          TarefaMobXPage(),
+          ContadorGetXPage(),
+          TarefaGetXPage(),
         ],
       ),
       bottomNavigationBar: ConvexAppBar.badge(
         {3: '99+', 1: Icons.assistant_photo, 2: Colors.redAccent},
         items: [
-          TabItem(icon: Icons.home, title: 'Provider 1'),
-          TabItem(icon: Icons.map, title: 'Provider 2'),
-          TabItem(icon: Icons.add, title: 'MobX'),
-          TabItem(icon: Icons.message, title: 'MobXStore'),
-          TabItem(icon: Icons.people, title: 'Tarefa MobX'),
+          TabItem(icon: Icons.home, title: 'P1'),
+          TabItem(icon: Icons.map, title: 'P2'),
+          TabItem(icon: Icons.add, title: 'M1'),
+          TabItem(icon: Icons.message, title: 'M2'),
+          TabItem(icon: Icons.people, title: 'M3'),
+          TabItem(icon: Icons.people, title: 'G1'),
+          TabItem(icon: Icons.people, title: 'G2'),
         ],
         onTap: (int i) => tabController.index = i,
         controller: tabController,
