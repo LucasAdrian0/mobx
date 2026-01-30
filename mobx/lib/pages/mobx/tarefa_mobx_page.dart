@@ -61,9 +61,9 @@ class TarefaMobXPage extends StatelessWidget {
                   Observer(
                         builder: (_) {
                           return Switch(
-                        value: listaTarefaStore.apenasNaoConcluidos.value,
+                        value: listaTarefaStore.apenasNaoConcluidos,
                         onChanged: (bool value) {
-                          listaTarefaStore.apenasNaoConcluidos.value = value;
+                          listaTarefaStore.setNaoConcluidos(value);
                         },
                       );
                     },

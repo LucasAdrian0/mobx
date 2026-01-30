@@ -10,15 +10,18 @@ class ListaTarefaStore = _ListaTarefaStore with _$ListaTarefaStore;
 abstract class _ListaTarefaStore with Store {
   ObservableList<TarefaStore> _tarefas = ObservableList<TarefaStore>();
 
-@computed
-List<TarefaStore> get tarefas => _apenasNaoConcluidos ? _tarefas.where((element) => !element.concluido).toList() :
-_tarefas.toList();
+  @computed
+  List<TarefaStore> get tarefas => apenasNaoConcluidos
+      ? _tarefas.where((element) => !element.concluido).toList()
+      : _tarefas.toList();
 
   @observable
   var _apenasNaoConcluidos = Observable(false);
 
+  bool get apenasNaoConcluidos => _apenasNaoConcluidos.value;
+
   @action
-  set apenasNaoConcluidos(bool value) {
+  void setNaoConcluidos(bool value) {
     _apenasNaoConcluidos.value = value;
   }
 
