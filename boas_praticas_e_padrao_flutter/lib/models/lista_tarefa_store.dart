@@ -1,11 +1,11 @@
 import 'package:mobx/mobx.dart';
-import 'package:pacotes/models/tarefa__mobx_model.dart';
+import 'tarefa__mobx_model.dart';
 
 // Include generated file
 part 'lista_tarefa_store.g.dart';
 
 // This is the class used by rest of your codebase
-class ListaTarefaStore = _ListaTarefaStore with _$ListaTarefaStore;
+class ListaTarefasStore = _ListaTarefaStore with _$ListaTarefaStore;
 
 abstract class _ListaTarefaStore with Store {
   ObservableList<TarefaStore> _tarefas = ObservableList<TarefaStore>();

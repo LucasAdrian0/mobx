@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pacotes/models/tarefa_model.dart';
-import 'package:pacotes/repository/tarefa_repository.dart';
+import '../../models/tarefa_model.dart';
+import '../../repository/tarefa_repository.dart';
 import 'package:provider/provider.dart';
 
 

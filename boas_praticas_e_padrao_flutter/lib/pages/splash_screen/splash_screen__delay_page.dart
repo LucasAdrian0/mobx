@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:pacotes/pages/home_page/home_page.dart';
+
+import '../home/home_page.dart';
 
 class SplashScreenDelayPage extends StatefulWidget {
   const SplashScreenDelayPage({super.key});

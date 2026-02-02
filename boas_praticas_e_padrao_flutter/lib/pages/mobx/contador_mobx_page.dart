@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pacotes/main.dart';
-import 'package:pacotes/service/counter_mobx_service.dart';
+
+import '../../main.dart';
+import '../../service/counter_mobx_service.dart';
+
 
 class ContadorMobXPage extends StatelessWidget {
   ContadorMobXPage({super.key});

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pacotes/models/lista_tarefa_store.dart';
-import 'package:pacotes/service/lista_de_tarefa_controller.dart';
+
+import '../../service/lista_de_tarefa_controller.dart';
+
 
 class TarefaGetXPage extends StatelessWidget {
   var descricaoController = TextEditingController();

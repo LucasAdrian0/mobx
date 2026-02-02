@@ -2,16 +2,18 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pacotes/pages/getx/contador_getx_page.dart';
-import 'package:pacotes/pages/getx/tarefa_getx_page.dart';
-import 'package:pacotes/pages/mobx/contador_mobx_page.dart';
-import 'package:pacotes/pages/mobx/contador_mobx_store_page.dart';
-import 'package:pacotes/pages/mobx/tarefa_mobx_page.dart';
-import 'package:pacotes/pages/provider/contador_provider_page.dart';
-import 'package:pacotes/pages/provider/tarefa_provider_page.dart';
-import 'package:pacotes/service/dark_mode_service.dart';
-import 'package:pacotes/shared/widget/custon_drawer.dart';
+
 import 'package:provider/provider.dart';
+
+import '../../service/dark_mode_service.dart';
+import '../../shared/widget/custon_drawer.dart';
+import '../getx/contador_getx_page.dart';
+import '../getx/tarefa_getx_page.dart';
+import '../mobx/contador_mobx_page.dart';
+import '../mobx/contador_mobx_store_page.dart';
+import '../mobx/tarefa_mobx_page.dart';
+import '../provider/contador_provider_page.dart';
+import '../provider/tarefa_provider_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

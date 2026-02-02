@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pacotes/service/contador_get_controller.dart';
+
+import '../../service/contador_get_controller.dart';
 
 class ContadorGetXPage extends StatelessWidget {
   ContadorGetXPage({super.key});

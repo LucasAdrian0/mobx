@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pacotes/service/contador_provider_service.dart';
+import '../../service/contador_provider_service.dart';
 import 'package:provider/provider.dart';
 
 class ContadorProviderPage extends StatefulWidget {

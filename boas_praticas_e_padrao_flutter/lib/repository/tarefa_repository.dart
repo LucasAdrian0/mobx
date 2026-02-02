@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pacotes/models/tarefa_model.dart';
+
+import '../models/tarefa_model.dart';
 
 class TarefaRepository extends ChangeNotifier {
   final _tarefas = <Tarefa>[];

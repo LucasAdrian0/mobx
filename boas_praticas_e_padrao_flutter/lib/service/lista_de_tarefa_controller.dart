@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:pacotes/models/tarefa_model.dart';
+
+import '../models/tarefa_model.dart';
 
 class ListaDeTarefaController extends GetxController {
   final _apenasNaoConcluidos = false.obs;

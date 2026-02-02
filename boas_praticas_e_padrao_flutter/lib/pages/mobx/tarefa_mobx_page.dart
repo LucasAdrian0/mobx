@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx/mobx.dart';
-import 'package:pacotes/models/lista_tarefa_store.dart';
-import 'package:pacotes/models/tarefa_model.dart';
-import 'package:pacotes/repository/tarefa_repository.dart';
+import 'package:pacotes/shared/widget/tarefa_item.dart';
+
+import '../../main.dart';
+import '../../models/lista_tarefa_store.dart';
 
 class TarefaMobXPage extends StatelessWidget {
   var descricaoController = TextEditingController();
-  var listaTarefaStore = ListaTarefaStore();
+  var listaTarefasStore = getIt<ListaTarefasStore>();
 
   TarefaMobXPage({super.key});
 
@@ -33,7 +33,7 @@ class TarefaMobXPage extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () async {
-                      listaTarefaStore.adicionar(descricaoController.text);
+                      listaTarefasStore.adicionar(descricaoController.text);
                       Navigator.pop(context);
                     },
                     child: Text("Salvar"),
@@ -59,11 +59,11 @@ class TarefaMobXPage extends StatelessWidget {
                     style: TextStyle(fontSize: 18),
                   ),
                   Observer(
-                        builder: (_) {
-                          return Switch(
-                        value: listaTarefaStore.apenasNaoConcluidos,
+                    builder: (_) {
+                      return Switch(
+                        value: listaTarefasStore.apenasNaoConcluidos,
                         onChanged: (bool value) {
-                          listaTarefaStore.setNaoConcluidos(value);
+                          listaTarefasStore.setNaoConcluidos(value);
                         },
                       );
                     },
@@ -75,33 +75,10 @@ class TarefaMobXPage extends StatelessWidget {
               child: Observer(
                 builder: (_) {
                   return ListView.builder(
-                    itemCount: listaTarefaStore.tarefas.length,
+                    itemCount: listaTarefasStore.tarefas.length,
                     itemBuilder: (BuildContext bc, int index) {
-                      var tarefa = listaTarefaStore.tarefas[index];
-                      return Observer(
-                        builder: (_) {
-                          return Dismissible(
-                            onDismissed: (DismissDirection dismissDerection) async {
-                              listaTarefaStore.excluir(tarefa.id);
-                            },
-                            key: Key(tarefa.descricao),
-                            child: ListTile(
-                              title: Text(tarefa.descricao),
-                              trailing: Switch(
-                                onChanged: (bool value) async {
-                                  tarefa.concluido = value;
-                                  listaTarefaStore.alterar(
-                                    tarefa.id,
-                                    tarefa.descricao,
-                                    tarefa.concluido,
-                                  );
-                                },
-                                value: tarefa.concluido,
-                              ),
-                            ),
-                          );
-                        }
-                      );
+                      var tarefa = listaTarefasStore.tarefas[index];
+                      return TarefaItem(tarefa: tarefa);
                     },
                   );
                 },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pacotes/service/contador_mobx_store.dart';
+
+import '../../service/contador_mobx_store.dart';
 
 class ContadorMobXStorePage extends StatelessWidget {
   ContadorMobXStorePage({super.key});

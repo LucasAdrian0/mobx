@@ -1,21 +1,22 @@
 import 'dart:io';
-
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:pacotes/pages/auto_size_text.dart';
-import 'package:pacotes/pages/battery_page/battery_page.dart';
-import 'package:pacotes/pages/brasil_fields_page/brasil_fields_page.dart';
-import 'package:pacotes/pages/camera/camera_page.dart';
-import 'package:pacotes/pages/connectivity_plus/connectivy_plus_page.dart';
-import 'package:pacotes/pages/geolocator/geolocator_page.dart';
-import 'package:pacotes/pages/qr_code/qr_code_page.dart';
-import 'package:pacotes/pages/percent_indicator/percent_indicator.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+
+import '../../pages/auto_size_text.dart';
+import '../../pages/battery_page/battery_page.dart';
+import '../../pages/brasil_fields_page/brasil_fields_page.dart';
+import '../../pages/camera/camera_page.dart';
+import '../../pages/connectivity_plus/connectivy_plus_page.dart';
+import '../../pages/geolocator/geolocator_page.dart';
+import '../../pages/percent_indicator/percent_indicator.dart';
+import '../../pages/post/post_page.dart';
+import '../../pages/qr_code/qr_code_page.dart';
 
 class CustonDrawer extends StatelessWidget {
   const CustonDrawer({super.key});
@@ -435,6 +436,32 @@ class CustonDrawer extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => BrasilFieldsPage()),
+              );
+            },
+          ),
+          const Divider(),
+          const SizedBox(height: 10),
+          //Post
+          InkWell(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              width: double.infinity,
+              child: Row(
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.paperPlane,
+                    color: Colors.blue,
+                    size: 24,
+                  ),
+                  SizedBox(width: 5),
+                  Text("Post"),
+                ],
+              ),
+            ),
+            onTap: () async {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => PostsPage()),
               );
             },
           ),
